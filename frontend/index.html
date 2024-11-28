@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comic Reader</title>
-  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
   <header>
@@ -12,26 +13,45 @@
   </header>
 
   <main>
-    <section id="upload-section">
-      <h2>El lugar de tus historias gráficas</h2>
-      <form id="carga-formulario">
-        <input type="file" id="comic-archivo" name="comic" accept=".pdf" required>
-        <button type="submit">Subir comic</button>
-      </form>
-    </section>
-
     <section id="comics-list">
       <h2>Tus Comics</h2>
+      <button id="abrir-modal">Subir Comic</button>
       <div id="lista-archivos">
         <!-- Los archivos se listan dinamicamente -->
       </div>
     </section>
   </main>
 
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="cerrar-modal">&times;</span>
+      <h2>Subir Comic</h2>
+      <form id="carga-formulario">
+        <label for="comic-titulo">Título del Comic:</label>
+        <input type="text" id="comic-titulo" name="titulo" placeholder="Ingresa el título" required>
+
+        <label for="comic-categoria">Categoría:</label>
+        <select id="comic-categoria" name="categoria" required>
+          <option value="">Selecciona una categoría</option>
+          <option value="Superhéroes">Superhéroes</option>
+          <option value="Aventura">Aventura</option>
+          <option value="Fantasía">Fantasía</option>
+        </select>
+
+        <label for="comic-archivo">Archivo:</label>
+        <input type="file" id="comic-archivo" name="comic" accept=".pdf" required>
+
+        <button type="submit">Subir</button>
+      </form>
+    </div>
+  </div>   
+
   <footer>
     <p>&copy; 2024 Lector de Comics</p>
   </footer>
 
-  <script src="js/app.js"></script>
+  <!-- <script src="js/pdf/pdf.mjs"></script> -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
