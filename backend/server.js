@@ -94,31 +94,11 @@ app.get('/archivos', (req, res) => {
 app.get('/descarga/:filename', (req, res) => {
   const fs = require('fs');
   const rutaArchivo = path.join(UPLOADS_FOLDER, req.params.filename);
-  const metadataPath = path.join(__dirname, 'metadata.json');
 
-  // Eliminar el archivo físico
-  res.unlink(rutaArchivo, err => {
+  res.download(rutaArchivo, err => {
     if (err) {
-      res.status(500).send('Error al descargar el archivo.');
+      return res.status(500).send('Error al descargar el archivo.');
     }
-
-    // Actualizar metadata.json
-    fs.readFile(metadataPath, (err, data) => {
-      if (err) {
-        return res.status(500).send('Error al leer el archivo de metadata.');
-      }
-
-      let metadata = data.length ? JSON.parse(data) : [];
-      metadata = metadata.filter(file => file.filename !== req.params.filename);
-
-      fs.writeFile(metadataPath, JSON.stringify(metadata, null, 2), err => {
-        if (err) {
-          return res.status(500).send('Error al actualizar los metadatos.');
-        }
-
-        res.status(200).send('Archivo eliminado de manera exitosa.');
-      });
-    });
   });
 });
 
@@ -156,7 +136,7 @@ app.delete('/eliminar/:filename', (req, res) => {
   });
 });
 
-  // Iniciar el servidor
-  app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  });
+// Iniciar el servidor
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});

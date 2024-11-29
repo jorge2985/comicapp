@@ -100,7 +100,7 @@
       const pagina = await pdf.getPage(1);
 
       // Calcular escala para ajustar al ancho del contenedor
-      const escala = container.clientWidth / pagina.view[3];
+      const escala = container.clientWidth / pagina.view[2];
 
       // Configurar el viewport
       const viewport = pagina.getViewport({ scale: escala });

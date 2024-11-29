@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
+
+  <!-- Navbar -->
+  <div class="topnav" id="miTopnav">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#creadores">Creadores</a>
+    <a href="#categoria">Categoria</a>
+    <a href="#contact">Contact</a>
+    <a href="#somos">¿Quienes somos?</a>
+    <a href="javascript:void(0);" class="icon" onclick="miFuncion()">
+      &#9776;
+    </a>
+  </div>
+  <!-- Fin Navbar -->
+
   <header>
-    <h1>Lector de Comics</h1>
+    <h1>El Hornero</h1>
   </header>
 
   <main>
@@ -45,13 +61,23 @@
         <button type="submit">Subir</button>
       </form>
     </div>
-  </div>   
+  </div>
 
   <footer>
     <p>&copy; 2024 Lector de Comics</p>
   </footer>
 
-  <!-- <script src="js/pdf/pdf.mjs"></script> -->
   <script type="module" src="js/app.js"></script>
+  <script>
+    function miFuncion() {
+      let navegador = document.getElementById("miTopnav");
+      if (navegador.className === "topnav") {
+        navegador.className += " responsive";
+      } else {
+        navegador.className = "topnav";
+      }
+    }
+  </script>
 </body>
+
 </html>
